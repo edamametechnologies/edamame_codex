@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "edamame-codex": {
+      "command": "node",
+      "args": [
+        "${CLAUDE_PLUGIN_ROOT}/bridge/codex_edamame_mcp.mjs"
+      ]
+    }
+  }
+}
