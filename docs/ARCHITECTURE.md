@@ -12,7 +12,7 @@
 
 ## External Transcript Observer
 
-EDAMAME core 1.2.3 also ships an EDAMAME-side observer that reads the same Codex session directory directly. The observer is additive and hash-skips when its payload matches the last push from this package. Operators can pause, resume, or run the observer from the EDAMAME app's AI / Config tab. If Codex is installed and the observer is paused, the `unsecured_codex` internal threat becomes active.
+EDAMAME core 1.2.3 ships an EDAMAME-side observer that reads `~/.codex/sessions/` directly and feeds the same ingest pipeline. The observer is the security primitive: divergence detection works as soon as Codex is **discovered** on disk, regardless of whether this Node-side package is installed. When the package **is** installed, its bridge also pushes models in-process and the observer hash-skips on duplicate payloads -- so the two paths are purely additive. Operators can pause, resume, or run the observer per agent (discovered or not) from the EDAMAME app's AI / Config tab. When the observer is paused while Codex is discovered on disk, the `unsecured_codex` internal threat becomes active on the next score cycle (the threat keys on discovery, not plugin install).
 
 ## Host Modes
 
