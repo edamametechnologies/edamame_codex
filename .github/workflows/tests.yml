@@ -58,6 +58,14 @@ jobs:
           edamame_pin: ${{ secrets.EDAMAME_POSTURE_PIN }}
           edamame_id: ${{ github.run_id }}
           checkout: true
+          packet_capture: true
+          vulnerability_detection: true
+          vulnerability_detection_interval: "60"
+          agentic_mode: analyze
+          agentic_provider: edamame
+          agentic_interval: 600
+        env:
+          EDAMAME_LLM_API_KEY: ${{ secrets.EDAMAME_LLM_API_KEY }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -161,6 +169,13 @@ jobs:
             }).catch(e => { console.error('FAIL:', e.message); process.exit(1); });
           "
           echo "--- MCP bridge verification complete ---"
+
+      - name: EDAMAME Posture vulnerability gate
+        if: always()
+        uses: edamametechnologies/edamame_posture_action@v1
+        with:
+          dump_vulnerability_findings: true
+          exit_on_vulnerability_findings: true
 
       - name: Slack alert on failure
         if: failure()
