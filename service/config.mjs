@@ -94,9 +94,14 @@ export const DEFAULT_CONFIG = Object.freeze({
   verdictHistoryLimit: 10,
   codexLlmHosts: [
     "api.openai.com:443",
+    // Codex CLI is OpenAI-first but its model_providers config can point at
+    // Anthropic (and other OpenAI-compatible providers). Kept in sync with
+    // CODEX_LLM_HOSTS in edamame_foundation/src/agent_transcripts/codex.rs.
+    "api.anthropic.com:443",
     "amazonaws.com:443",
     "asn:CLOUDFLARENET",
     "asn:NOTION",
+    // Codex via Azure OpenAI routes to Microsoft (AS8075).
     "asn:MICROSOFT-CORP",
     // Codex CLI LLM traffic routes through AWS (AS14618 AMAZON-AES,
     // AS16509 AMAZON-02). Many sessions resolve only to raw IPs
