@@ -1,6 +1,6 @@
 # EDAMAME for Codex CLI
 
-EDAMAME for Codex CLI bridges OpenAI Codex CLI reasoning artifacts to the local EDAMAME Security host so EDAMAME can correlate declared intent against observed system activity.
+EDAMAME Security monitors Codex CLI **automatically**: its host-side transcript observer runs two-plane divergence detection the moment Codex is discovered on disk, with **no plugin required** (see [Observer vs plugin](#observer-vs-plugin-what-provides-the-security) below). This package is a cooperative enhancement — it extends that coverage to off-host Codex sessions and adds turnkey MCP onboarding; it never provides, or can weaken, that guarantee.
 
 This package keeps the same workstation pattern as the Cursor and Claude packages:
 
